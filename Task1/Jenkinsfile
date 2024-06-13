@@ -3,7 +3,7 @@ pipeline {
     environment {
         OLD_VERSION = "v2"
         VERSION = "v3"
-        DOCKERHUB_CREDS = credentials('dockerhub')
+        DOCKERHUB_CREDS = credentials('Dockerhubtoken')
     }
     stages {
         stage('Build Images') {
