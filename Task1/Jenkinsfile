@@ -3,8 +3,8 @@ pipeline {
     environment {
         OLD_VERSION = "v1"
         VERSION = "v2"
-        DOCKERHUB_CREDS_USR = credentials('Dockerhubtoken')
-        
+        DOCKERHUB_CREDS = credentials('Dockerhubtoken')
+  
     }
     stages {
         stage('Build Images') {
@@ -23,7 +23,7 @@ pipeline {
         }
         stage('Push to DockerHub') {
             steps {
-                sh "docker login -u ${DOCKERHUB_CREDS_USR} -p ${DOCKERHUB_CREDS_USR}"
+                sh "docker login -u ${DOCKERHUB_CREDS_USR} -p ${DOCKERHUB_CREDS_PSW}"
                 sh "docker push ${DOCKERHUB_CREDS_USR}/task1-flask-app:${VERSION}"
                 sh "docker push ${DOCKERHUB_CREDS_USR}/task1-nginx:${VERSION}"
                 sh "docker logout"
